@@ -1,0 +1,11 @@
+{
+    "SECRET_KEY": "helloWorld",
+    "POSTGRES_USER": "postgres",
+    "POSTGRES_PASSWORD": "postgres",
+    "POSTGRES_DATABASE": "gotolunch",
+    "POSTGRES_HOST": "localhost",
+    "POSTGRES_PORT": 5432,
+    "FIREBASE_DB_URL": "https://<project_id>.firebaseio.com",
+    "FCM_SENDER_ID": "<SENDER_ID>",
+    "FCM_SERVER_KEY": "<SERVER_KEY>"
+}

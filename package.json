@@ -1,0 +1,33 @@
+{
+  "name": "firebase-backend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.14.0",
+    "express-session": "^1.14.2",
+    "firebase-admin": "^4.0.4",
+    "jade": "~1.11.0",
+    "ltx": "^2.6.2",
+    "morgan": "~1.7.0",
+    "nconf": "^0.8.4",
+    "node-xmpp-client": "^3.1.2",
+    "node-xmpp-core": "^5.0.7",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "passport-local": "^1.0.0",
+    "pg": "^6.1.2",
+    "sequelize": "^3.29.0",
+    "serve-favicon": "~2.3.0",
+    "stylus": "^0.54.5",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "readline-sync": "^1.4.5"
+  }
+}

@@ -1,0 +1,4 @@
+node_modules/
+config.json
+serviceAccount.json
+npm-debug.log
