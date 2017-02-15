@@ -59,14 +59,16 @@ var handleStanzaResponse = function(xmpp_client, stanza) {
             break;
         case 'receipt': {
             if (data.from) {
-                sendAckMessage(xmpp_client, data);
+              console.log("Sending ACK message");
+              sendAckMessage(xmpp_client, data);
             }
             break;
         }
         default: {
             // An Upstream from client: Send ack, as per spec
             if (data.from) {
-                sendAckMessage(xmpp_client, data);
+              console.log("Sending ACK message");
+              sendAckMessage(xmpp_client, data);
             }
 
             break;
