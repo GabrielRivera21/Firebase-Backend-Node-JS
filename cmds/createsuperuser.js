@@ -1,13 +1,16 @@
-var Models = require('../models');
-var bcrypt = require('bcrypt');
-const uuidV4 = require('uuid/v4');
+var nconf = require('nconf');
+nconf.env().file({ file: __dirname + '/../config/config.json' });
+
+var admin = require('../config/firdatabase');
 
 var readlineSync = require('readline-sync');
 
 module.exports = function () {
-    var user = {};
+    var user = {
+      emailVerified: false,
+      disabled: false
+    };
 
-    user.uid = uuidV4();
     user.email = readlineSync.questionEMail('Please enter an Email:\n');
     user.displayName = readlineSync.question("Please enter the Display Name:\n");
 
@@ -21,14 +24,25 @@ module.exports = function () {
             isSamePassword = true;
         }
     }
-    var salt = bcrypt.genSaltSync(10);
-    user.password = bcrypt.hashSync(password, salt);
 
-    Models.users.create(user).then(function (userinstance) {
-        console.log("user has been successfully created.");
+    user.password = password;
+
+    admin.auth().createUser(user).then(function(userRecord) {
+      // See the UserRecord reference doc for the contents of userRecord.
+      console.log("Created User in Authentication, now storing in Realtime Database...");
+      user.is_admin = true;
+      var db = admin.database();
+      var newUserRef = db.ref("users/" + userRecord.uid);
+      newUserRef.set(user, function(error) {
+        if(error) {
+          console.err("Data could not be saved." + error);
+        } else {
+          console.log("Successfully created new user:", userRecord.uid);
+        }
         process.exit();
-    }).catch(function (err) {
-        console.log(err);
-        process.exit();
+      });
+    }).catch(function(error) {
+      console.log("Error creating new user:", error);
+      process.exit();
     });
 };

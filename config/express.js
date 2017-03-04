@@ -7,10 +7,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var nconf = require('nconf');
 
-var xmpp_client = require('./fcm-xmpp');
-
-module.exports = function (app, passport) {
-    nconf.env().file({ file: __dirname + "/config.json" });
+module.exports = function (app) {
+    nconf.env().file({ file: __dirname + "/files/config.json" });
 
     // view engine setup__dirname + '/../config/config.json'
     app.set('views', path.join(__dirname, '../views'));
@@ -24,17 +22,4 @@ module.exports = function (app, passport) {
     app.use(cookieParser());
     app.use(require('stylus').middleware(path.join(__dirname, '../public')));
     app.use(express.static(path.join(__dirname, '../public')));
-
-    app.use(session({
-        resave: false,
-        saveUninitialized: true,
-        secret: nconf.get('SECRET_KEY'),
-        cookie: {
-            maxAge : 1000 * 60 * 60 * 24
-        }
-    }));
-
-    // Initialize passport
-    app.use(passport.initialize());
-    app.use(passport.session());
 }

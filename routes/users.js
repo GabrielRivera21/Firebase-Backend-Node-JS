@@ -1,18 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.json({'message': 'respond with a resource'});
-});
+var auth = require('../config/auth');
 
-router.post('/:id', function(req, res, next) {
-  // var userId = req.params.id;
-  // var notification = buildNotification({title: "hello", body: "sup"});
-  // var message = buildMessage(notification);
-  // sendMessage(pushXcs, message, function(result) {
-  //   res.json({"message": "Done."});
-  // });
+/* GET users listing. */
+router.get('/me', auth.isAuthenticated, function(req, res, next) {
+  res.json(req.user);
 });
 
 module.exports = router;

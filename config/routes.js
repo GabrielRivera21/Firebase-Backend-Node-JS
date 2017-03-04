@@ -1,28 +1,8 @@
 var index = require('../routes/index');
 var users = require('../routes/users');
 var fcm = require('../routes/fcm');
-var isNotAuthenticated = require('./passport').isNotAuthenticated;
 
-module.exports = function (app, passport) {
-    app.post('/login', passport.authenticate('local'), function (req, res) {
-        req.session.save(function (err) {
-            if (err) {
-                console.log(err);
-                return res.redirect('/login');
-            }
-            return res.redirect('/');
-        });
-    });
-
-    app.get('/login', isNotAuthenticated, function (req, res) {
-        res.render('account/login');
-    });
-
-    app.get('/logout', function (req, res) {
-        req.logout();
-        res.redirect('/');
-    });
-
+module.exports = function (app) {
     // setting routers
     app.use('/', index);
     app.use('/api/users', users);

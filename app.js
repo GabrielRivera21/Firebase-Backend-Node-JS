@@ -1,11 +1,10 @@
 var express = require('express');
-var passport = require('passport');
 
 var app = new express();
 
-require('./config/passport')(passport);
-require('./config/express')(app, passport);
-require('./config/routes')(app, passport);
-require('./config/firdatabase')(app);
+require('./config/express')(app); // configure express framework and env file.
+require('./config/routes')(app); // configure routes.
+require('./config/firdatabase'); // initialize admin SDK.
+require('./config/fcm-xmpp'); // construct xmpp client.
 
 module.exports = app;

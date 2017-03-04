@@ -15,14 +15,27 @@ $ npm install
 #### Virtual Environment
 
 This project uses environmental variables and is able to read them from a `config.json` file,
-so lets set that up. Go into the `config` folder and copy the `config-example.json` and name it
-`config.json` on that same directory.
+so lets set that up. Execute the following command in the root directory of the project.
 
 ```
-$ cp config-example.json config.json
+$ cp ./config/files/config-example.json ./config/files/config.json
 ```
 
 Afterwards set your values for the database and azure storage connection inside the `config.json`.
+
+#### Add Firebase Credentials
+
+In order for the Firebase Admin SDK to work, you will need to follow the steps in
+the documentation [here](https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app)
+to add the `serviceAccount.json` file under the `/config/files` directory
+
+**Note**: You must name your private key file `serviceAccount.json`
+
+#### Add Firebase to the Frontend
+
+Paste initialization snippet into `views/html/messaging.html` with the one generated from
+the Firebase Console **Overview > Add Firebase to your web app**.
+See TODO in`views/html/messaging.html`.
 
 #### Running the Project
 
