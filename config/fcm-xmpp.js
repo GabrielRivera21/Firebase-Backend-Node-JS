@@ -107,11 +107,12 @@ client.on('stanza', function(stanza) {
         return;
     }
 
+    printJSONStanzaData(data);
+
     switch (data.message_type) {
         case 'control':
             if (data.control_type === 'CONNECTION_DRAINING') {
               isConnectionDraining = true;
-              printJSONStanzaData(data);
               // TODO: Open another connection while this one closes.
             }
             break;
@@ -120,13 +121,13 @@ client.on('stanza', function(stanza) {
             // just print it out for dev purposes
             // we can mark the notification as successfully sent on our side.
             if (data.message_id) {
-              printJSONStanzaData(data);
+              // TODO: ignore it or do something, this means CCS received
+              // successfully the message.
             }
             break;
         case 'receipt':
         default: {
             // An Upstream from client or receipt: Send ack, as per spec
-            printJSONStanzaData(data);
             if (data.from) {
                 sendAckMessage(client, data);
             }
