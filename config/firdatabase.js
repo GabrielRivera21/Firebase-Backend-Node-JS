@@ -11,3 +11,12 @@ admin.initializeApp({
 
 
 module.exports = admin;
+module.exports.getUser = function(uid) {
+  return new Promise(function(fulfill, reject) {
+    if(!uid) return reject("Please provide a uid");
+    let ref = admin.database().ref("users/" + uid);
+    ref.once("value", function(data) {
+      return fulfill(data.val());
+    });
+  });
+}

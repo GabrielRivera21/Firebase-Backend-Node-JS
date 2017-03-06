@@ -37,6 +37,14 @@ Paste initialization snippet into `views/html/messaging.html` with the one gener
 the Firebase Console **Overview > Add Firebase to your web app**.
 See TODO in`views/html/messaging.html`.
 
+#### Create a User
+
+Run the following command in your Terminal:
+
+```
+npm run createsuperuser
+```
+
 #### Running the Project
 
 To run the project on the directory go into the directory where the `package.json` file is in the
