@@ -1,5 +1,5 @@
 var nconf = require('nconf');
-nconf.env().file({ file: __dirname + '/../config/config.json' });
+nconf.env().file({ file: __dirname + '/../config/files/config.json' });
 
 var admin = require('../config/firdatabase');
 
@@ -30,7 +30,11 @@ module.exports = function () {
     admin.auth().createUser(user).then(function(userRecord) {
       // See the UserRecord reference doc for the contents of userRecord.
       console.log("Created User in Authentication, now storing in Realtime Database...");
+
+      // Add flag for admin and delete password before storing in RT DB
       user.is_admin = true;
+      delete user["password"];
+
       var db = admin.database();
       var newUserRef = db.ref("users/" + userRecord.uid);
       newUserRef.set(user, function(error) {

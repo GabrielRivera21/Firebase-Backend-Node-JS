@@ -15,7 +15,7 @@ module.exports.isAuthenticated = function (req, res, next) {
     var token = authorization.split(" ")[1];
     admin.auth().verifyIdToken(token)
       .then(function(decodedToken) {
-        req.user = {
+        req.user_identification = {
           uid: decodedToken.uid,
           email: decodedToken.email,
           is_email_verified: decodedToken.email_verified
