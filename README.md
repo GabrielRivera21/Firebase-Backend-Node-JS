@@ -21,7 +21,7 @@ so lets set that up. Execute the following command in the root directory of the 
 $ cp ./config/files/config-example.json ./config/files/config.json
 ```
 
-Afterwards set your values for the database and azure storage connection inside the `config.json`.
+Afterwards set your values for the Firebase DB, Server Key and Sender ID inside the `config.json`.
 
 #### Add Firebase Credentials
 
